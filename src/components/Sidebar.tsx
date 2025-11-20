@@ -29,7 +29,7 @@ export function Sidebar({ currentPage, onPageChange }: SidebarProps) {
           <span>Dashboard</span>
         </button>
         <button
-          onClick={() => onPageChange('dashboard')}
+          onClick={() => onPageChange('books')}
           className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
             isActive('books') ? 'bg-blue-600 hover:bg-blue-700' : 'text-gray-300 hover:bg-gray-800'
           }`}
