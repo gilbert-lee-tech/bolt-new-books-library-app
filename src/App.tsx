@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
+import { Books } from './components/Books'
 import { LibrariesDashboard } from './components/LibrariesDashboard';
 
 type Page = 'dashboard' | 'books' | 'libraries';
@@ -12,7 +13,7 @@ function App() {
     <div className="flex">
       <Sidebar currentPage={currentPage} onPageChange={setCurrentPage} />
       {currentPage === 'dashboard' && <Dashboard />}
-      {currentPage === 'books' && <div>B Test</div>}
+      {currentPage === 'books' && <Books />}
       {currentPage === 'libraries' && <LibrariesDashboard />}
     </div>
   );

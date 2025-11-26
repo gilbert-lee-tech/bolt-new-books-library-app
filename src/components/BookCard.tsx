@@ -16,12 +16,15 @@ const statusColors: Record<string, { bg: string; text: string }> = {
   'in-transit': { bg: 'bg-blue-100', text: 'text-blue-700' },
 };
 
-export function BookCard({ book }: { book: Book }) {
+export function BookCard({ book, onImageClick }: { book: Book; onImageClick?: (book: Book) => void }) {
   const statusStyle = statusColors[book.status] || statusColors.available;
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow h-full flex flex-col">
-      <div className="relative w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden">
+      <div
+        className="relative w-full h-48 bg-gradient-to-br from-gray-200 to-gray-300 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+        onClick={() => onImageClick?.(book)}
+      >
         {book.image_url ? (
           <img src={book.image_url} alt={book.title} className="w-full h-full object-cover" />
         ) : (
@@ -29,9 +32,7 @@ export function BookCard({ book }: { book: Book }) {
             <span className="text-gray-400 text-sm">No image</span>
           </div>
         )}
-        <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${statusStyle.bg} ${statusStyle.text}`}>
-          {book.status}
-        </div>
+
       </div>
 
       <div className="p-4 flex-1 flex flex-col">
