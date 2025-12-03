@@ -4,11 +4,11 @@ A library inventory tracking application for managing books and library location
 
 ### About This Project
 
-This project is a personal practice application for managing a book inventory. It was scaffolded and created using the **Bolt.new** platform.
+This project is a personal practice application for managing a book inventory. It was scaffolded and created using the [Bolt.new](https://bolt.new/) platform.
 
 ### Live Application
 
-Access the application at: https://gilbert-lee-tech-bol-zin1.bolt.host
+Access the application at: [Library Inventory](https://gilbert-lee-tech-bol-zin1.bolt.host)
 
 ## How to run locally
 
