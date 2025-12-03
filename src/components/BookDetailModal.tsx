@@ -21,8 +21,12 @@ interface Library {
   area: string;
 }
 
+interface LibraryWithCount extends Library {
+  bookCount: number;
+}
+
 interface BookWithLibraries extends Book {
-  libraries: Library[];
+  libraries: LibraryWithCount[];
 }
 
 const statusColors: Record<string, { bg: string; text: string; label: string }> = {
@@ -71,9 +75,21 @@ export function BookDetailModal({ book, isOpen, onClose }: BookDetailModalProps)
 
       if (err) throw err;
 
-      const libraries = (data || [])
-        .map((item: any) => item.libraries)
-        .filter((lib: Library | null) => lib !== null) as Library[];
+      const libraryMap = new Map<string, LibraryWithCount>();
+
+      (data || []).forEach((item: any) => {
+        const lib = item.libraries as Library;
+        if (lib) {
+          if (libraryMap.has(lib.id)) {
+            const existing = libraryMap.get(lib.id)!;
+            existing.bookCount += 1;
+          } else {
+            libraryMap.set(lib.id, { ...lib, bookCount: 1 });
+          }
+        }
+      });
+
+      const libraries = Array.from(libraryMap.values());
 
       setBookWithLibraries({
         ...book,
@@ -192,8 +208,11 @@ export function BookDetailModal({ book, isOpen, onClose }: BookDetailModalProps)
                     {bookWithLibraries.libraries.map((library) => (
                       <div
                         key={library.id}
-                        className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all"
+                        className="p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:bg-gray-50 transition-all relative"
                       >
+                        <div className="absolute top-3 right-3 bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold">
+                          {library.bookCount}
+                        </div>
                         <p className="font-semibold text-gray-900">{library.area}</p>
                         <p className="text-sm text-gray-600">{library.city}, {library.country}</p>
                       </div>
