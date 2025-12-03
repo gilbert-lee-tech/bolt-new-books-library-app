@@ -1,12 +1,13 @@
 import { BookOpen, Home, Library, Settings, LogOut } from 'lucide-react';
-import { Page } from './App.tsx'
+import { Page } from '../App'
 
 interface SidebarProps {
   currentPage: Page;
   onPageChange: (page: Page) => void;
+  onSettingsClick: () => void;
 }
 
-export function Sidebar({ currentPage, onPageChange }: SidebarProps) {
+export function Sidebar({ currentPage, onPageChange, onSettingsClick }: SidebarProps) {
   const isActive = (page: Page) => currentPage === page;
 
   return (
@@ -47,6 +48,7 @@ export function Sidebar({ currentPage, onPageChange }: SidebarProps) {
           <span>Library Profile</span>
         </button>
         <button
+          onClick={onSettingsClick}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
         >
           <Settings className="w-5 h-5" />
