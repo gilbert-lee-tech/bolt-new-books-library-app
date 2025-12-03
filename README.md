@@ -1,13 +1,26 @@
-# bolt_new-library-inventory-app
+# Library Inventory Application
 
-The SaaS for library inventory tracking application on IOS/Android/Web platforms.
+A library inventory tracking application for managing books and library locations.
 
 ### About This Project
 
 This project is a personal practice application for managing a book inventory. It was scaffolded and created using the **Bolt.new** platform.
 
+### Live Application
 
-## How to run?
+Access the application at: https://gilbert-lee-tech-bol-zin1.bolt.host
+
+## How to run locally
+
 ```
 npm install && npm run dev
 ```
+
+## Features
+
+- Dashboard with library and book statistics
+- Browse and search books in the inventory
+- View library profiles and locations
+- Book detail modal with library availability information
+- Light/Dark mode theme switcher
+- Responsive design for web platforms
